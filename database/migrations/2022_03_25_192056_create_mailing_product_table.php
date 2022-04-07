@@ -20,8 +20,8 @@ class CreateMailingProductTable extends Migration
             $table->unsignedInteger('mailing_id');
             $table->foreign('mailing_id')->references('id')->on('mailings');
 
-            $table->unsignedInteger('product_id');
-            $table->foreign('product_id')->references('id')->on('products');
+            // $table->unsignedInteger('product_id');
+            // $table->foreign('product_id')->references('id')->on('products');
 
         });
     }

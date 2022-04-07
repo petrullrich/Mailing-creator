@@ -26,7 +26,7 @@ class UpdateManufacturersTable extends Migration
     public function down()
     {
         Schema::table('manufacturers', function (Blueprint $table) {
-            $table->integer('name');
+            $table->string('name');
         });
     }
 }
