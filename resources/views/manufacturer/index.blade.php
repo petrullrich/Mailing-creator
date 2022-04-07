@@ -30,7 +30,12 @@
         </td>
     </tr>
     @empty
-    <p>Nejsou zatím přidáni žádní výrobci!</p>
+  
+    <tr>
+        <td>
+            <p>Nejsou zatím přidáni žádní výrobci!</p>
+        </td>
+    </tr>
     @endforelse
     </tbody>
     </table>

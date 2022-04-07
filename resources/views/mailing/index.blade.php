@@ -36,7 +36,11 @@
             </td>
         </tr>
         @empty
-        <p>Nejsou zatím přidáni žádní výrobci!</p>
+        <tr>
+            <td>
+                <p>Není přidaný žádný mailing!</p>
+            </td>
+        </tr>
         @endforelse
     </tbody>
 </table>

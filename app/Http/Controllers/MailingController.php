@@ -254,6 +254,7 @@ class MailingController extends Controller
      */
     public function XmlToCollection()
     {
+        dd('fun-xml-before getting file');
         // load xml
         $xmlFile = Storage::disk('local')->get('feed.xml');
         $xml = simplexml_load_string($xmlFile);

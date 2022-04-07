@@ -88,9 +88,33 @@
                             <input type="text" id="id_3" name="product_id[]" class="form-control" value="{{ old('id_3') }}" required>
                         </div>
                     </div>
+                    <div class="mt-1 row g-3 align-items-center" id="new_4">
+                        <div class="col-auto">
+                            <label for="id_4" class="col-form-label">Objednací kód</label>
+                        </div>
+                        <div class="col-auto">
+                            <input type="text" id="id_4" name="product_id[]" class="form-control" value="{{ old('id_4') }}" required>
+                        </div>
+                    </div>
+                    <div class="mt-1 row g-3 align-items-center" id="new_5">
+                        <div class="col-auto">
+                            <label for="id_5" class="col-form-label">Objednací kód</label>
+                        </div>
+                        <div class="col-auto">
+                            <input type="text" id="id_5" name="product_id[]" class="form-control" value="{{ old('id_5') }}" required>
+                        </div>
+                    </div>
+                    <div class="mt-1 row g-3 align-items-center" id="new_6">
+                        <div class="col-auto">
+                            <label for="id_6" class="col-form-label">Objednací kód</label>
+                        </div>
+                        <div class="col-auto">
+                            <input type="text" id="id_6" name="product_id[]" class="form-control" value="{{ old('id_6') }}" required>
+                        </div>
+                    </div>
                 </div>
 
-                <input type="hidden" value="3" id="total_chq">
+                <input type="hidden" value="6" id="total_chq">
             </div>
         </div>
     </form>
@@ -138,7 +162,7 @@
     $('.remove').on('click', remove);
 
     function add() {
-        var initial_inputs_number = 3;
+        var initial_inputs_number = 6;
         var new_chq_no = parseInt($('#total_chq').val()) + 1;
         var new_input = "<div class='mt-1 row g-3 align-items-center' id='new_" + new_chq_no +
             "'><div class='col-auto'><label for='id_" + new_chq_no +
