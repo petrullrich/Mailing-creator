@@ -8,19 +8,20 @@ use App\Models\Product;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use App\Models\Manufacturer;
+use Hamcrest\Arrays\IsArray;
 use Illuminate\Http\Request;
 use PhpParser\Node\Stmt\If_;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\UpdateMailing;
-use Hamcrest\Arrays\IsArray;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
+use function PHPUnit\Framework\isEmpty;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Builder;
+
 use Illuminate\Support\Facades\Validator;
 use phpDocumentor\Reflection\Types\Self_;
-
-use function PHPUnit\Framework\isEmpty;
 
 class MailingController extends Controller
 {
@@ -79,6 +80,10 @@ class MailingController extends Controller
 
         // load data from XML
         $productsCollection = Self::XmlToCollection();
+        if($productsCollection == null){
+            session()->flash('status', 'Chybí XML feed');
+            return redirect()->route('mailing.create');
+        }
         
         //____DO SOMETHING FOR EACH PRODUCT______
         $productsIds = $request->product_id;
@@ -254,10 +259,18 @@ class MailingController extends Controller
      */
     public function XmlToCollection()
     {
-        
+        $xmlFile = '';
         // load xml
-        $xmlFile = Storage::disk('local')->get('feed.xml');
-        dd($xmlFile);
+        if(Storage::disk('local')->exists('feed.xml')){
+            $xmlFile = Storage::disk('local')->get('feed.xml');
+        }
+        else{
+            return null;
+        }
+        //load from url
+        //$xmlFile = Http::get('https://eshop.indigoumi.cz/export-zbozi')->body();
+
+        
         $xml = simplexml_load_string($xmlFile);
 
         // xml to array process
@@ -272,7 +285,6 @@ class MailingController extends Controller
         $productsCollection = $productsCollection->mapWithKeys(function($product, $key){
             return [$product['ITEM_ID'] => $product];
         });
-
         return $productsCollection;
     }
 
